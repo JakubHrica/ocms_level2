@@ -1,0 +1,4 @@
+v1.0.1:
+- First version of User
+- Added User Model
+- create_users_table.php

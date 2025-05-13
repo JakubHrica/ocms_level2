@@ -1,7 +1,7 @@
 {
     "name": "appchat/reaction-plugin",
     "type": "october-plugin",
-    "description": "No description provided yet...",
+    "description": "Plugin for managing reactions",
     "require": {
         "composer/installers": "~1.0"
     }

@@ -1,7 +1,7 @@
 {
     "name": "appchat/conversation-plugin",
     "type": "october-plugin",
-    "description": "No description provided yet...",
+    "description": "Plugin for managing conversations",
     "require": {
         "composer/installers": "~1.0"
     }

@@ -1,1 +1,3 @@
-v1.0.1: First version of Reaction
+v1.0.1:
+- Added Reaction Model
+- create_reactions_table.php

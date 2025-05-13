@@ -17,70 +17,9 @@ class Plugin extends PluginBase
     {
         return [
             'name' => 'Message',
-            'description' => 'No description provided yet...',
+            'description' => 'Plugin for managing messages',
             'author' => 'AppChat',
-            'icon' => 'icon-leaf'
-        ];
-    }
-
-    /**
-     * register method, called when the plugin is first registered.
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * boot method, called right before the request route.
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
-     * registerComponents used by the frontend.
-     */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'AppChat\Message\Components\MyComponent' => 'myComponent',
-        ];
-    }
-
-    /**
-     * registerPermissions used by the backend.
-     */
-    public function registerPermissions()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'appchat.message.some_permission' => [
-                'tab' => 'Message',
-                'label' => 'Some permission'
-            ],
-        ];
-    }
-
-    /**
-     * registerNavigation used by the backend.
-     */
-    public function registerNavigation()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'message' => [
-                'label' => 'Message',
-                'url' => Backend::url('appchat/message/mycontroller'),
-                'icon' => 'icon-leaf',
-                'permissions' => ['appchat.message.*'],
-                'order' => 500,
-            ],
+            'icon' => 'icon-comments',
         ];
     }
 }

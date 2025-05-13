@@ -18,6 +18,10 @@ return new class extends Migration
     {
         Schema::create('appchat_emojisettings_settings', function(Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->string('unicode');
+
             $table->timestamps();
         });
     }

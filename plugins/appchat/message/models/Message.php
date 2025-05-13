@@ -1,5 +1,7 @@
 <?php namespace AppChat\Message\Models;
 
+use AppChat\Conversation\Models\Conversation;
+use AppUser\User\Models\User;
 use Model;
 use October\Rain\Database\Attach\File;
 use AppChat\Reaction\Models\Reaction;
@@ -28,23 +30,35 @@ class Message extends Model
         'attachment' => 'nullable|file|max:5120'
     ];
 
+    /**
+     * @var array belongsTo relationships
+     */
     public $belongsTo = [
-        'conversation' => ['AppChat\Conversation\Models\Conversation'],
-        'user'         => ['AppUser\User\Models\User'],
-        'reply_to'     => ['AppChat\Message\Models\Message', 'key' => 'reply_to_id'],
-        'user' => ['AppUser\User\Models\User'],
-        'reply_to' => ['AppChat\Message\Models\Message', 'key' => 'reply_to_id'],
-        'conversation' => ['AppChat\Conversation\Models\Conversation']
+        'conversation' => Conversation::class,
+        'user' => User::class,
+        'reply_to' => [Message::class, 'key' => 'reply_to_id'],
+        'user' => User::class,
+        'reply_to' => [Message::class, 'key' => 'reply_to_id'],
+        'conversation' => Conversation::class,
     ];
 
+    /**
+     * @var array attachOne relationships
+     */
     public $attachOne = [
         'attachment' => File::class,
     ];
 
+    /**
+     * @var array hasOne relationships
+     */
     public $hasOne = [
         'reaction' => Reaction::class
     ];
 
+    /**
+     * @var array hasMany relationships
+     */
     public $hasMany = [
         'reactions' => Reaction::class
     ];

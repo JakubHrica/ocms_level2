@@ -1,6 +1,8 @@
 <?php namespace AppChat\Conversation\Models;
 
+use AppChat\Message\Models\Message;
 use Model;
+use AppUser\User\Models\User;
 
 /**
  * Conversation Model
@@ -19,19 +21,22 @@ class Conversation extends Model
     /**
      * @var array rules for validation
      */
-    public $rules = [];
+    public $rules = [
+        'user_id' => 'required|integer',
+    ];
+
     /**
      * @var array belongsTo relationships
      */
     public $belongsTo = [
-        'user_one' => ['AppUser\User\Models\User', 'key' => 'user_one_id'],
-        'user_two' => ['AppUser\User\Models\User', 'key' => 'user_two_id'],
+        'user_one' => [User::class, 'key' => 'user_one_id'],
+        'user_two' => [User::class, 'key' => 'user_two_id'],
     ];
 
     /**
      * @var array hasMany relationships
      */
     public $hasMany = [
-        'messages' => ['AppChat\Message\Models\Message'],
+        'messages' => Message::class,
     ];
 }

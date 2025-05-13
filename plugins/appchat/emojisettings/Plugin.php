@@ -17,52 +17,9 @@ class Plugin extends PluginBase
     {
         return [
             'name' => 'EmojiSettings',
-            'description' => 'No description provided yet...',
+            'description' => 'Plugin for managing emojis',
             'author' => 'AppChat',
-            'icon' => 'icon-leaf'
-        ];
-    }
-
-    /**
-     * register method, called when the plugin is first registered.
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * boot method, called right before the request route.
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
-     * registerComponents used by the frontend.
-     */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'AppChat\EmojiSettings\Components\MyComponent' => 'myComponent',
-        ];
-    }
-
-    /**
-     * registerPermissions used by the backend.
-     */
-    public function registerPermissions()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'appchat.emojisettings.some_permission' => [
-                'tab' => 'EmojiSettings',
-                'label' => 'Some permission'
-            ],
+            'icon' => 'icon-emoji-happy',
         ];
     }
 

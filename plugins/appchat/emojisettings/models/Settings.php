@@ -9,6 +9,9 @@ use Model;
  */
 class Settings extends Model
 {
+    /**
+     * @var array list of behaviors implemented by this model
+     */
     public $implement = ['System.Behaviors.SettingsModel'];
 
     /**

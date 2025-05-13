@@ -1,6 +1,5 @@
 <?php namespace AppChat\Conversation;
 
-use Backend;
 use System\Classes\PluginBase;
 
 /**
@@ -17,70 +16,9 @@ class Plugin extends PluginBase
     {
         return [
             'name' => 'Conversation',
-            'description' => 'No description provided yet...',
+            'description' => 'Plugin for managing conversations',
             'author' => 'AppChat',
-            'icon' => 'icon-leaf'
-        ];
-    }
-
-    /**
-     * register method, called when the plugin is first registered.
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * boot method, called right before the request route.
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
-     * registerComponents used by the frontend.
-     */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'AppChat\Conversation\Components\MyComponent' => 'myComponent',
-        ];
-    }
-
-    /**
-     * registerPermissions used by the backend.
-     */
-    public function registerPermissions()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'appchat.conversation.some_permission' => [
-                'tab' => 'Conversation',
-                'label' => 'Some permission'
-            ],
-        ];
-    }
-
-    /**
-     * registerNavigation used by the backend.
-     */
-    public function registerNavigation()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'conversation' => [
-                'label' => 'Conversation',
-                'url' => Backend::url('appchat/conversation/mycontroller'),
-                'icon' => 'icon-leaf',
-                'permissions' => ['appchat.conversation.*'],
-                'order' => 500,
-            ],
+            'icon' => 'icon-comments'
         ];
     }
 }

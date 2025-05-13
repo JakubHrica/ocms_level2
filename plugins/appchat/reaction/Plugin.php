@@ -1,6 +1,5 @@
 <?php namespace AppChat\Reaction;
 
-use Backend;
 use System\Classes\PluginBase;
 
 /**
@@ -17,70 +16,9 @@ class Plugin extends PluginBase
     {
         return [
             'name' => 'Reaction',
-            'description' => 'No description provided yet...',
+            'description' => 'Plugin for managing reactions',
             'author' => 'AppChat',
             'icon' => 'icon-leaf'
-        ];
-    }
-
-    /**
-     * register method, called when the plugin is first registered.
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * boot method, called right before the request route.
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
-     * registerComponents used by the frontend.
-     */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'AppChat\Reaction\Components\MyComponent' => 'myComponent',
-        ];
-    }
-
-    /**
-     * registerPermissions used by the backend.
-     */
-    public function registerPermissions()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'appchat.reaction.some_permission' => [
-                'tab' => 'Reaction',
-                'label' => 'Some permission'
-            ],
-        ];
-    }
-
-    /**
-     * registerNavigation used by the backend.
-     */
-    public function registerNavigation()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'reaction' => [
-                'label' => 'Reaction',
-                'url' => Backend::url('appchat/reaction/mycontroller'),
-                'icon' => 'icon-leaf',
-                'permissions' => ['appchat.reaction.*'],
-                'order' => 500,
-            ],
         ];
     }
 }

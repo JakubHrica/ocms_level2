@@ -27,6 +27,9 @@ class Reaction extends Model
         'emoji'
     ];
 
+    /**
+     * @var array belongsTo relationships
+     */
     public $belongsTo = [
         'message' => Message::class,
         'user' => User::class

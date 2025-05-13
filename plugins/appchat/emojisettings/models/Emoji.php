@@ -16,7 +16,10 @@ class Emoji extends Model
      */
     public $table = 'appchat_emojisettings_emoji';
 
-    protected $fillable = ['name', 'unicode'];
+    protected $fillable = [
+        'name',
+        'unicode'
+    ];
 
     /**
      * @var array rules for validation

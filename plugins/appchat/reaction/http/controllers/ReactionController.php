@@ -9,18 +9,25 @@ class ReactionController extends Controller
     public function reactToMessage(Request $request)
     {
         try {
-            $user = $request->user;
-            $messageId = $request->input('message_id');
-            $emoji = $request->input('emoji');
+            $authUser = $request->user; // Authenticated user
+            $data = $request->post(); // Retrieve data from the request
 
+            // Update or create a reaction for the given message and user
+            // If a reaction already exists, it updates the emoji; otherwise, it creates a new reaction
             $reaction = Reaction::updateOrCreate(
-                ['message_id' => $messageId, 'user_id' => $user->id],
-                ['emoji' => $emoji]
+            ['message_id' => $request['messageId'], 'user_id' => $authUser->id],
+            ['emoji' => $request['emoji']]
             );
 
-            return response()->json(['message' => 'Reaction added', 'reaction' => $reaction]);
+            return response()->json([
+                'message' => 'Reaction added',
+                'reaction' => $reaction
+            ]);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to add reaction', 'details' => $e->getMessage()], 500);
+            return response()->json([
+                'error' => 'Failed to add reaction',
+                'details' => $e->getMessage()
+            ], 500);
         }
     }
 }

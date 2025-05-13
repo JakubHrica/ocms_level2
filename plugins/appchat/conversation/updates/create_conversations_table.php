@@ -17,13 +17,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('appchat_conversation_conversations', function (Blueprint $table) {
-            $table->engine = 'InnoDB'; // Nutné pre foreign keys
+            $table->engine = 'InnoDB';
 
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('user_one_id');
             $table->unsignedBigInteger('user_two_id');
-
             $table->string('name')->default('Konverzácia');
 
             $table->timestamps();

@@ -29,4 +29,5 @@ class MessageController extends Controller
             return response()->json(['error' => 'Failed to send message', 'details' => $e->getMessage()], 500);
         }
     }
+
 }

@@ -1,11 +1,11 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
-use AppChat\Message\Http\Controllers\MessageController;
+use AppChat\Reaction\Http\Controllers\ReactionController;
 use AppUser\User\Http\Middleware\UserMiddleware;
 
 Route::prefix('/api')->middleware(UserMiddleware::class)->group(function () {
     Route::middleware(UserMiddleware::class)->group(function () {
-        Route::post('/send_message', [MessageController::class, 'sendMessage']);
-        //Route::get('/messages/{conversation_id}', MessageController::class, 'getMessages');
+        // Route::post('reactions/react', ReactionController::class, 'reactToMessage');
     });
 });

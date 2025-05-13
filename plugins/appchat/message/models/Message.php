@@ -2,6 +2,7 @@
 
 use Model;
 use October\Rain\Database\Attach\File;
+use AppChat\Reaction\Models\Reaction;
 
 /**
  * Message Model
@@ -30,10 +31,21 @@ class Message extends Model
     public $belongsTo = [
         'conversation' => ['AppChat\Conversation\Models\Conversation'],
         'user'         => ['AppUser\User\Models\User'],
-        'reply_to'     => ['AppChat\Message\Models\Message', 'key' => 'reply_to_id']
+        'reply_to'     => ['AppChat\Message\Models\Message', 'key' => 'reply_to_id'],
+        'user' => ['AppUser\User\Models\User'],
+        'reply_to' => ['AppChat\Message\Models\Message', 'key' => 'reply_to_id'],
+        'conversation' => ['AppChat\Conversation\Models\Conversation']
     ];
 
     public $attachOne = [
         'attachment' => File::class,
+    ];
+
+    public $hasOne = [
+        'reaction' => Reaction::class
+    ];
+
+    public $hasMany = [
+        'reactions' => Reaction::class
     ];
 }

@@ -4,11 +4,11 @@
 
 columns:
     message_id:
-        label: Správa ID
+        label: Message ID
         sortable: true
 
     user_id:
-        label: Používateľ ID
+        label: User ID
         sortable: true
 
     emoji:
@@ -16,11 +16,11 @@ columns:
         sortable: false
 
     created_at:
-        label: Vytvorené
+        label: Created At
         sortable: true
         type: datetime
 
     updated_at:
-        label: Upravené
+        label: Updated At
         sortable: true
         type: datetime

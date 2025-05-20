@@ -3,6 +3,28 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
+    user_one_id:
+        label: User One ID
+        type: text
         searchable: true
+
+    user_two_id:
+        label: User Two ID
+        type: text
+        searchable: true
+
+    name:
+        label: Name
+        type: text
+        searchable: true
+
+    created_at:
+        label: Created At
+        type: datetime
+        searchable: true
+
+    updated_at:
+        label: Updated At
+        type: datetime
+        searchable: true
+        invisible: true

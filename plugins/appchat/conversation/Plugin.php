@@ -21,4 +21,17 @@ class Plugin extends PluginBase
             'icon' => 'icon-comments'
         ];
     }
+
+    public function registerNavigation()
+    {
+        return [
+            'conversation' => [
+                'label' => 'Conversations',
+                'url' => \Backend::url('appchat/conversation/conversations'),
+                'icon' => 'icon-comments',
+                'permissions' => ['appchat.conversation.*'],
+                'order' => 1002,
+            ],
+        ];
+    }
 }

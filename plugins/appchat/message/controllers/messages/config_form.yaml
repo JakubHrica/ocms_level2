@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Message
+
+# Model Form Field configuration
+form: $/appchat/message/models/message/fields.yaml
+
+# Model Class name
+modelClass: AppChat\Message\Models\Message
+
+# Default redirect location
+defaultRedirect: appchat/message/messages
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: appchat/message/messages/update/:id
+    redirectClose: appchat/message/messages
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: appchat/message/messages
+    redirectClose: appchat/message/messages
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

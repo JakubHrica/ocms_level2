@@ -3,6 +3,40 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
+    conversation_id:
+        label: Conversation ID
+        type: text
+        span: auto
+        required: true
+
+    user_id:
+        label: User ID
+        type: text
+        span: auto
+        required: true
+
+    content:
+        label: Content
+        type: text
+        span: auto
+        required: true
+
+    reply_to_id:
+        label: Reply To ID
+        type: text
+        span: auto
+        required: false
+
+    created_at:
+        label: Created At
+        type: datepicker
+        span: auto
+        default: now
+        disabled: true
+
+    updated_at:
+        label: Updated At
+        type: datepicker
+        span: auto
+        default: now
         disabled: true

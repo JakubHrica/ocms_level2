@@ -3,6 +3,35 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
+    user_one_id:
+        label: User One ID
+        type: text
+        span: auto
+        required: true
+
+    user_two_id:
+        label: User Two ID
+        type: text
+        span: auto
+        required: true
+
+    name:
+        label: Name
+        type: text
+        span: auto
+        required: false
+        default: 'Conversation'
+
+    created_at:
+        label: Created At
+        type: datepicker
+        span: auto
+        default: now
+        disabled: true
+
+    updated_at:
+        label: Updated At
+        type: datepicker
+        span: auto
+        default: now
         disabled: true

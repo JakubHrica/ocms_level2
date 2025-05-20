@@ -3,6 +3,33 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
+    conversation_id:
+        label: Conversation ID
+        type: text
         searchable: true
+
+    user_id:
+        label: User ID
+        type: text
+        searchable: true
+
+    content:
+        label: Content
+        type: text
+        searchable: true
+
+    reply_to_id:
+        label: Reply To ID
+        type: text
+        searchable: true
+
+    created_at:
+        label: Created At
+        type: datetime
+        searchable: true
+
+    updated_at:
+        label: Updated At
+        type: datetime
+        searchable: true
+        invisible: true

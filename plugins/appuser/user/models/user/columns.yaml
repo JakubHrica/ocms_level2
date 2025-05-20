@@ -3,6 +3,18 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
+    email:
+        label: Email
+        type: text
         searchable: true
+
+    created_at:
+        label: Created At
+        type: datetime
+        searchable: true
+
+    updated_at:
+        label: Updated At
+        type: datetime
+        searchable: true
+        invisible: true

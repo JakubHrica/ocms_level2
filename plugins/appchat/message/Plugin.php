@@ -22,4 +22,17 @@ class Plugin extends PluginBase
             'icon' => 'icon-comments',
         ];
     }
+
+    public function registerNavigation()
+    {
+        return [
+            'message' => [
+                'label' => 'Messages',
+                'url' => Backend::url('appchat/message/messages'),
+                'icon' => 'icon-comments',
+                'permissions' => ['appchat.message.*'],
+                'order' => 1003,
+            ],
+        ];
+    }
 }

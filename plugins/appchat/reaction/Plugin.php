@@ -37,4 +37,17 @@ class Plugin extends PluginBase
             ]
         ];
     }
+
+    public function registerNavigation()
+    {
+        return [
+            'reaction' => [
+                'label' => 'Reactions',
+                'url' => \Backend::url('appchat/reaction/reactions'),
+                'icon' => 'icon-smile-o',
+                'permissions' => ['appchat.reaction.*'],
+                'order' => 1004,
+            ],
+        ];
+    }
 }

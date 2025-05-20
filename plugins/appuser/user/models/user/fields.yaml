@@ -3,6 +3,32 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
+    email:
+        label: Email
+        type: text
+        span: auto
+        required: true
+        validation:
+            email: true
+
+    password:
+        label: Password
+        type: password
+        span: auto
+        required: true
+        validation:
+            minLength: 6
+
+    created_at:
+        label: Created At
+        type: datepicker
+        span: auto
+        default: now
+        disabled: true
+
+    updated_at:
+        label: Updated At
+        type: datepicker
+        span: auto
+        default: now
         disabled: true

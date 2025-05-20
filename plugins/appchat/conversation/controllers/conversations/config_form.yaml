@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Conversation
+
+# Model Form Field configuration
+form: $/appchat/conversation/models/conversation/fields.yaml
+
+# Model Class name
+modelClass: AppChat\Conversation\Models\Conversation
+
+# Default redirect location
+defaultRedirect: appchat/conversation/conversations
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: appchat/conversation/conversations/update/:id
+    redirectClose: appchat/conversation/conversations
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: appchat/conversation/conversations
+    redirectClose: appchat/conversation/conversations
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Reaction
+
+# Model Form Field configuration
+form: $/appchat/reaction/models/reaction/fields.yaml
+
+# Model Class name
+modelClass: AppChat\Reaction\Models\Reaction
+
+# Default redirect location
+defaultRedirect: appchat/reaction/reactions
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: appchat/reaction/reactions/update/:id
+    redirectClose: appchat/reaction/reactions
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: appchat/reaction/reactions
+    redirectClose: appchat/reaction/reactions
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

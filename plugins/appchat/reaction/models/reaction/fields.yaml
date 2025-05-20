@@ -4,13 +4,13 @@
 
 fields:
     message_id:
-        label: Správa
+        label: Message ID
         type: number
         span: left
         required: true
 
     user_id:
-        label: Používateľ
+        label: User ID
         type: number
         span: right
         required: true

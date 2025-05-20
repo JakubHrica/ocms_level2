@@ -22,4 +22,17 @@ class Plugin extends PluginBase
             'icon' => 'icon-leaf'
         ];
     }
+
+    public function registerNavigation()
+    {
+        return [
+            'user' => [
+                'label' => 'Users',
+                'url' => Backend::url('appuser/user/users'),
+                'icon' => 'icon-user-circle',
+                'permissions' => ['appuser.user.*'],
+                'order' => 1001,
+            ],
+        ];
+    }
 }

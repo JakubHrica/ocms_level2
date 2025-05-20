@@ -6,6 +6,6 @@ use AppUser\User\Http\Middleware\UserMiddleware;
 Route::prefix('/api/v1')->middleware(UserMiddleware::class)->group(function () {
     Route::middleware(UserMiddleware::class)->group(function () {
         Route::post('/send_message', [MessageController::class, 'sendMessage']);
-        Route::get('/messages/{conversation_id}', MessageController::class, 'getMessages');
+        Route::get('/get_messages/{conversation_id}', [MessageController::class, 'getMessages']);
     });
 });

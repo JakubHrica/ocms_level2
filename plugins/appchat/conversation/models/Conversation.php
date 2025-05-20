@@ -21,9 +21,7 @@ class Conversation extends Model
     /**
      * @var array rules for validation
      */
-    public $rules = [
-        'user_id' => 'required|integer',
-    ];
+    public $rules = [];
 
     /**
      * @var array belongsTo relationships

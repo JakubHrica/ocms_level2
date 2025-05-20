@@ -1,22 +1,28 @@
 <?php namespace AppChat\Reaction\Http\Controllers;
 
 use Illuminate\Http\Request;
-use AppChat\Reaction\Models\Reaction;
 use Illuminate\Routing\Controller;
+use AppChat\Reaction\Models\Reaction;
+use AppChat\Reaction\Models\EmojiSettings;
 
 class ReactionController extends Controller
 {
-    public function reactToMessage(Request $request)
+    public function reactToMessage(Request $request, $message_id)
     {
         try {
-            $authUser = $request->user; // Authenticated user
-            $data = $request->post(); // Retrieve data from the request
+            $authUser = $request->user;
+            $emoji = $request->post('emoji');
 
-            // Update or create a reaction for the given message and user
-            // If a reaction already exists, it updates the emoji; otherwise, it creates a new reaction
+            $settings = EmojiSettings::instance();
+            $allowed = collect($settings->available_emojis)->pluck('emoji')->contains($emoji);
+
+            if (!$allowed) {
+                return response()->json(['error' => 'Not allowed reaction'], 403);
+            }   
+            
             $reaction = Reaction::updateOrCreate(
-            ['message_id' => $request['messageId'], 'user_id' => $authUser->id],
-            ['emoji' => $request['emoji']]
+                ['message_id' => $message_id, 'user_id' => $authUser->id],
+                ['emoji' => $emoji]
             );
 
             return response()->json([
@@ -26,6 +32,29 @@ class ReactionController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Failed to add reaction',
+                'details' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getAvailableEmojis()
+    {
+        try {
+            $settings = EmojiSettings::instance();
+            $emojis = $settings->available_emojis ?? [];
+
+            $emojis = collect($settings->available_emojis ?? [])
+                ->pluck('emoji')
+                ->filter()
+                ->values()
+                ->all();
+
+            return response()->json([
+                'emojis' => $emojis
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to fetch emojis',
                 'details' => $e->getMessage()
             ], 500);
         }

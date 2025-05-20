@@ -60,7 +60,11 @@ class UserController extends Controller
             $user->save();
 
             // Return a success response with the generated token
-            return response()->json(['token' => $user->token]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User logged in successfully',
+                'token' => $user->token
+            ]);
         } catch (Exception $e) {
             return $this->handleException($e, 'Failed to login');
         }

@@ -38,7 +38,7 @@ class MessageController extends Controller
         }
     }
 
-    public function getMessages($conversationId)
+    public function getMessages(Request $request, $conversation_id)
     {
         try {
             // Fetch messages for the given conversation ID
@@ -48,7 +48,7 @@ class MessageController extends Controller
             'reply_to', // Include the message being replied to, if any
             'attachment' // Include any attachments associated with the message
             ])
-            ->where('conversation_id', $conversationId) // Filter messages by conversation ID
+            ->where('conversation_id', $conversation_id) // Filter messages by conversation ID
             ->orderBy('created_at', 'asc') // Order messages by creation time in ascending order
             ->get(); // Retrieve the messages
 

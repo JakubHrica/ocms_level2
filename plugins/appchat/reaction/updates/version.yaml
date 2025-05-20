@@ -1,3 +1,4 @@
 v1.0.1:
 - Added Reaction Model
 - create_reactions_table.php
+- Added EmojiSettings Model

@@ -3,6 +3,7 @@
 use Model;
 use AppChat\Message\Models\Message;
 use AppUser\User\Models\User;
+use AppChat\Reaction\Models\EmojiSettings;
 
 /**
  * Reaction Model
@@ -18,10 +19,21 @@ class Reaction extends Model
      */
     public $table = 'appchat_reaction_reactions';
 
+    public $settingsFields = 'fields.yaml';
+
     /**
      * @var array rules for validation
      */
     public $rules = [
+        'message_id',
+        'user_id',
+        'emoji'
+    ];
+
+    /**
+     * @var array fillable attributes
+     */
+    protected $fillable = [
         'message_id',
         'user_id',
         'emoji'
@@ -34,4 +46,12 @@ class Reaction extends Model
         'message' => Message::class,
         'user' => User::class
     ];
+
+    public function getEmojiOptions()
+    {
+        $settings = EmojiSettings::instance();
+        return [
+            'emojis' => $settings->available_emojis
+        ];
+    }
 }

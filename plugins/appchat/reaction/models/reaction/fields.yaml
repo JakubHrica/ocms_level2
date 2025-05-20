@@ -3,6 +3,20 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
-        disabled: true
+    message_id:
+        label: Správa
+        type: number
+        span: left
+        required: true
+
+    user_id:
+        label: Používateľ
+        type: number
+        span: right
+        required: true
+
+    emoji:
+        label: Emoji
+        type: dropdown
+        options: getEmojiOptions
+        required: true

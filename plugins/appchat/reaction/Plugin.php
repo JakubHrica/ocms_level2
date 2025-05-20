@@ -21,4 +21,20 @@ class Plugin extends PluginBase
             'icon' => 'icon-leaf'
         ];
     }
+
+    public function registerSettings()
+    {
+        return [
+            'settings' => [
+                'label' => 'Emoji Settings',
+                'description' => 'Manage emoji based settings.',
+                'category' => 'AppChat',
+                'icon' => 'icon-smile-o',
+                'class' => \AppChat\Reaction\Models\EmojiSettings::class,
+                'order' => 1001,
+                'keywords' => 'emoji, settings',
+                'permissions' => ['acme.users.access_settings']
+            ]
+        ];
+    }
 }

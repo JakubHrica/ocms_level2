@@ -3,6 +3,24 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
-        searchable: true
+    message_id:
+        label: Správa ID
+        sortable: true
+
+    user_id:
+        label: Používateľ ID
+        sortable: true
+
+    emoji:
+        label: Emoji
+        sortable: false
+
+    created_at:
+        label: Vytvorené
+        sortable: true
+        type: datetime
+
+    updated_at:
+        label: Upravené
+        sortable: true
+        type: datetime

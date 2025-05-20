@@ -8,18 +8,24 @@ use Exception;
 
 class ConversationController extends Controller
 {
-    // Function to search for users
-    public function searchUsers(Request $request)
+    // Function to search for a user by email
+    public function searchUsers(Request $request, $email)
     {
         try {
             $authUser = $request->user; // Authenticated user
-            $data = $request->post(); // Retrieve data from the request
+
+            if (!$authUser) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'User not authenticated'
+                ], 401);
+            }
 
             // Get the IDs of users with whom the authenticated user has conversations
             $conversationUserIds = Conversation::where('user_one_id', $authUser->id)
                 ->orWhere('user_two_id', $authUser->id)
                 ->get()
-                ->flatMap(function ($conversation) use ($authUser) {
+                ->flatMap(function ($conversation) {
                     return [$conversation->user_one_id, $conversation->user_two_id];
                 })
                 ->unique()
@@ -27,39 +33,38 @@ class ConversationController extends Controller
                 ->values()
                 ->toArray();
 
-            // Search for users who are not in conversations and match the search term
-            $users = User::where('id', '!=', $authUser->id)
+            // Search for a user by email who is not in conversation with the authenticated user
+            $user = User::where('id', '!=', $authUser->id)
                 ->whereNotIn('id', $conversationUserIds)
-                ->when($data['search'], function ($query) use ($data) {
-                    $query->where('email', 'LIKE', '%' . $data['search'] . '%');
-                })
+                ->where('email', $email)
                 ->select('id', 'email')
-                ->get();
+                ->first();
+
+            if (!$user) {
+                return response()->json([
+                    'status' => 'Error',
+                    'message' => 'User not found or is already in conversation with you'
+                ], 404);
+            }
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Users fetched successfully',
-                'data' => $users // Return the found users
+                'message' => 'User fetched successfully',
+                'data' => $user
             ]);
         } catch (Exception $e) {
-            return $this->handleException($e, 'Failed to fetch available users');
+            return $this->handleException($e, 'Failed to fetch user');
         }
     }
 
     // Function to start a new conversation
-    public function startConversation(Request $request)
+    public function startConversation(Request $request, $user_id)
     {
         try {
-            $authUser = $request->user; // Logged-in user
-            $data = $request->post(); // Retrieve the ID of the other user from POST data
-
-            // Validate the users
-            if (!$authUser || !$data['user_id'] || $authUser->id == $data['user_id']) {
-                return response()->json(['error' => 'Invalid users'], 400);
-            }
+            $authUser = $request->user; // Authenticated user
 
             // Check if a conversation already exists between these users
-            $otherUserId = $data['user_id'];
+            $otherUserId = $user_id;
 
             $existing = Conversation::where(function($q) use ($authUser, $otherUserId) {
                 $q->where('user_one_id', $authUser->id)

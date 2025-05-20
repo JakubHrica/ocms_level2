@@ -1,8 +1,0 @@
-{
-    "name": "appchat/emojisettings-plugin",
-    "type": "october-plugin",
-    "description": "Plugin for managing emojis",
-    "require": {
-        "composer/installers": "~1.0"
-    }
-}

@@ -49,8 +49,11 @@ class UserController extends Controller
 
             // Check if the user exists and the provided password matches the stored hashed password
             if (!$user || !Hash::check($data['password'], $user->password)) {
-            // Return an error response if credentials are invalid
-            return response()->json(['error' => 'Invalid credentials'], 401);
+                // Return an error response if credentials are invalid
+                return response()->json([
+                    'status' => 'error',
+                    'error' => 'Invalid credentials'
+                ], 401);
             }
 
             // Generate a new random token for the user
@@ -84,8 +87,8 @@ class UserController extends Controller
 
             // Return a success response indicating the user has been logged out
             return response()->json([
-            'status' => 'success',
-            'message' => 'Logged out'
+                'status' => 'success',
+                'message' => 'Logged out'
             ]);
         } catch (Exception $e) {
             return $this->handleException($e, 'Failed to logout');
@@ -95,6 +98,7 @@ class UserController extends Controller
     private function handleException(Exception $e, $defaultMessage)
     {
         return response()->json([
+            'status' => 'error',
             'error' => $defaultMessage,
             'message' => $e->getMessage()
         ], 500);

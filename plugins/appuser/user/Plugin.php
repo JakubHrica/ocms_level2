@@ -19,10 +19,13 @@ class Plugin extends PluginBase
             'name' => 'User',
             'description' => 'Plugin for managing users',
             'author' => 'AppUser',
-            'icon' => 'icon-leaf'
+            'icon' => 'icon-user-circle'
         ];
     }
 
+    /**
+     * registerNavigation registers the navigation items for the plugin.
+     */
     public function registerNavigation()
     {
         return [

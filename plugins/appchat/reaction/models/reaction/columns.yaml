@@ -24,3 +24,4 @@ columns:
         label: Updated At
         sortable: true
         type: datetime
+        invisible: true

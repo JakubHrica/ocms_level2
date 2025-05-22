@@ -40,6 +40,7 @@ class ConversationController extends Controller
                 ->select('id', 'email')
                 ->first();
 
+            // If no user is found, return an error response
             if (!$user) {
                 return response()->json([
                     'status' => 'Error',
@@ -110,9 +111,10 @@ class ConversationController extends Controller
     public function changeConversationName(Request $request, $conversation_id)
     {
         try {
-            $authUser = $request->user;
-            $newName = $request->input('name');
+            $authUser = $request->user; // Authenticated user
+            $newName = $request->input('name'); // New conversation name
 
+            // Validate the new name
             if (!$newName || trim($newName) === '') {
                 return response()->json([
                     'status' => 'error',
@@ -120,8 +122,9 @@ class ConversationController extends Controller
                 ], 400);
             }
 
-            $conversation = Conversation::find($conversation_id);
+            $conversation = Conversation::find($conversation_id); // Find the conversation by ID
 
+            // Check if the conversation exists
             if (!$conversation) {
                 return response()->json([
                     'status' => 'error',
@@ -137,26 +140,26 @@ class ConversationController extends Controller
                 ], 403);
             }
 
-            $conversation->name = $newName;
-            $conversation->save();
+            $conversation->name = $newName; // Update the conversation name
+            $conversation->save(); // Save the changes
 
             return response()->json([
-                'status' => 'success',
-                'message' => 'Conversation name updated successfully',
-                'conversation' => [
-                    'id' => $conversation->id,
-                    'name' => $conversation->name
-                ]
+                    'status' => 'success',
+                    'message' => 'Conversation name updated successfully',
+                    'conversation' => [
+                        'id' => $conversation->id,
+                        'name' => $conversation->name
+                    ]
             ]);
         } catch (Exception $e) {
             return $this->handleException($e, 'Failed to update conversation name');
         }
     }
 
-    // Function for error handling
     private function handleException(Exception $e, $message = 'An error occurred')
     {
         return response()->json([
+            'status' => 'error',
             'error' => $message,
             'message' => $e->getMessage()
         ], 500);

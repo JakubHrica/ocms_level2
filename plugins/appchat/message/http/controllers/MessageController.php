@@ -54,9 +54,9 @@ class MessageController extends Controller
 
             // Return a success response with the fetched messages
             return response()->json([
-            'status' => 'success',
-            'message' => 'Messages fetched successfully',
-            'messages' => $messages,
+                'status' => 'success',
+                'message' => 'Messages fetched successfully',
+                'messages' => $messages
             ]);
         } catch (\Exception $e) {
             return $this->handleException($e, 'Failed to fetch messages');
@@ -66,6 +66,7 @@ class MessageController extends Controller
     private function handleException(\Exception $e, $defaultMessage)
     {
         return response()->json([
+            'status' => 'error',
             'error' => $defaultMessage,
             'details' => $e->getMessage()
         ], 500);

@@ -25,19 +25,15 @@ class Reaction extends Model
      * @var array rules for validation
      */
     public $rules = [
-        'message_id',
-        'user_id',
-        'emoji'
+        'message_id' => 'required|unique:appchat_reaction_reactions',
+        'user_id' => 'required',
+        'emoji' => 'required'
     ];
 
     /**
      * @var array fillable attributes
      */
-    protected $fillable = [
-        'message_id',
-        'user_id',
-        'emoji'
-    ];
+    protected $fillable = ['message_id', 'user_id', 'emoji'];
 
     /**
      * @var array belongsTo relationships

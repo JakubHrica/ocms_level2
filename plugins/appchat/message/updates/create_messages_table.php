@@ -19,8 +19,8 @@ return new class extends Migration
         Schema::create('appchat_message_messages', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('conversation_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('conversation_id');
             $table->text('content')->nullable();
             $table->unsignedBigInteger('reply_to_id')->nullable();
 

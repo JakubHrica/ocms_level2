@@ -23,6 +23,9 @@ class Plugin extends PluginBase
         ];
     }
 
+    /**
+     * registerNavigation registers the navigation items for the plugin.
+     */
     public function registerNavigation()
     {
         return [

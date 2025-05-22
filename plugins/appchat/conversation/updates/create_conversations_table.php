@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_one_id');
             $table->unsignedBigInteger('user_two_id');
-            $table->string('name')->default('Konverzácia');
+            $table->string('name')->default('Conversation');
 
             $table->timestamps();
 

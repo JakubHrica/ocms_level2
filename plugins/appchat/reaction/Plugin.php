@@ -18,10 +18,13 @@ class Plugin extends PluginBase
             'name' => 'Reaction',
             'description' => 'Plugin for managing reactions',
             'author' => 'AppChat',
-            'icon' => 'icon-leaf'
+            'icon' => 'icon-smile-o'
         ];
     }
 
+    /**
+     * registerSettings registers the settings for the plugin.
+     */
     public function registerSettings()
     {
         return [
@@ -38,6 +41,9 @@ class Plugin extends PluginBase
         ];
     }
 
+    /**
+     * registerNavigation registers the navigation items for the plugin.
+     */
     public function registerNavigation()
     {
         return [

@@ -27,7 +27,18 @@ class Message extends Model
         'conversation_id' => 'required|exists:appchat_conversation_conversations,id',
         'content' => 'nullable|string',
         'reply_to_id' => 'nullable|exists:appchat_message_messages,id',
-        'attachment' => 'nullable|file|max:5120'
+        'attachment' => 'nullable|file|max:5120' // 5MB max size
+    ];
+
+    /**
+     * @var array fillable attributes
+     */
+    public $fillable = [
+        'user_id',
+        'conversation_id',
+        'content',
+        'reply_to_id',
+        'attachment'
     ];
 
     /**

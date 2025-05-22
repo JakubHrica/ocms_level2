@@ -19,16 +19,21 @@ return new class extends Migration
         Schema::create('appchat_reaction_reactions', function(Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('message_id');
+            $table->unsignedBigInteger('message_id')->unique();
             $table->unsignedBigInteger('user_id');
             $table->string('emoji');
 
             $table->timestamps();
 
-            $table->foreign('message_id')->references('id')->on('appchat_message_messages')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('appuser_user_users')->onDelete('cascade');
-
-            $table->unique(['message_id', 'user_id']);
+            $table->foreign('message_id')
+                  ->references('id')
+                  ->on('appchat_message_messages')
+                  ->onDelete('cascade');
+            
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('appuser_user_users')
+                  ->onDelete('cascade');
         });
     }
 

@@ -107,6 +107,52 @@ class ConversationController extends Controller
         }
     }
 
+    public function changeConversationName(Request $request, $conversation_id)
+    {
+        try {
+            $authUser = $request->user;
+            $newName = $request->input('name');
+
+            if (!$newName || trim($newName) === '') {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Conversation name is required'
+                ], 400);
+            }
+
+            $conversation = Conversation::find($conversation_id);
+
+            if (!$conversation) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Conversation not found'
+                ], 404);
+            }
+
+            // Check if the authenticated user is part of the conversation
+            if ($conversation->user_one_id != $authUser->id && $conversation->user_two_id != $authUser->id) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'You are not a participant in this conversation'
+                ], 403);
+            }
+
+            $conversation->name = $newName;
+            $conversation->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Conversation name updated successfully',
+                'conversation' => [
+                    'id' => $conversation->id,
+                    'name' => $conversation->name
+                ]
+            ]);
+        } catch (Exception $e) {
+            return $this->handleException($e, 'Failed to update conversation name');
+        }
+    }
+
     // Function for error handling
     private function handleException(Exception $e, $message = 'An error occurred')
     {

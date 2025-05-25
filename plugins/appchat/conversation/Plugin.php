@@ -37,4 +37,8 @@ class Plugin extends PluginBase
             ],
         ];
     }
+
+    public $require = [
+        'AppUser.User'
+    ];
 }

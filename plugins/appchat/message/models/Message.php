@@ -45,6 +45,7 @@ class Message extends Model
      * @var array belongsTo relationships
      */
     public $belongsTo = [
+        // REVIEW - Tu sa ti nejako opakujú veci
         'conversation' => Conversation::class,
         'user' => User::class,
         'reply_to' => [Message::class, 'key' => 'reply_to_id'],
@@ -59,6 +60,8 @@ class Message extends Model
     public $attachOne = [
         'attachment' => File::class,
     ];
+
+    // REVIEW - Nerozumiem prečo má Message zároveň hasOne aj hasMany na ten istý model, malo by to byť buď jedno alebo druhé
 
     /**
      * @var array hasOne relationships

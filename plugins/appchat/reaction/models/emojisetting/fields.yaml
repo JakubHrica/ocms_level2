@@ -2,6 +2,8 @@
 #  Form Field Definitions
 # ===================================
 
+# REVIEW - Tento file je v súbore "emojisetting" aj keď by si mal volať "emojisettings" - kvôli tomuto mi nastavovanie emojis nefungovalo, treba to opraviť
+
 fields:
     available_emojis:
         label: Allowed Emojis

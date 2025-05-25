@@ -28,5 +28,7 @@ class User extends Model
      * @var array fillable attributes
      */
 
+    // REVIEW - Citlivé údaje ako email / password / token by nikdy nemali byť vo fillable, je to security issue lebo by hacker mohol v ľubovoľnom requeste kde používaš fill poslať password a mohol by sa zmeniť
+
     protected $fillable = ['email', 'password', 'token'];
 }

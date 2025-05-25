@@ -14,6 +14,9 @@ class UserMiddleware
         // Check if a token is provided in the request
         if (!$token) {
             // Return a JSON response with an error if no token is provided
+
+            // REVIEW - Namiesto response s kódom 500 prosím použi throw new Exception, celkovo pozerám že v controlleri zvláštne riešiš errory, používaj throw new Exception a try-catch block v tomto projekte nepotrebuješ
+
             return response()->json([
                 'staus' => 'error',
                 'message' => 'No token provided',

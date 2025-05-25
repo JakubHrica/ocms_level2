@@ -16,6 +16,7 @@ class UserController extends Controller
             $data = $request->post();
 
             // Hash the user's password for secure storage
+            // REVIEW - Tip - Toto sa dá urobiť aj automaticky pomocou hashable attribútu v modeli, môžeš si to naštudovať
             $data['password'] = Hash::make($data['password']);
 
             // Create a new User instance with the provided data

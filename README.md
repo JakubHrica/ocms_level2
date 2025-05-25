@@ -44,12 +44,6 @@ Once the site is running, the homepage (`http://127.0.0.1:8000`) includes a full
 
 ---
 
-## 🔐 Default Login Credentials
-
-> ⚠️ You will find the default login credentials directly on the homepage (`http://127.0.0.1:8000`) after starting the project.
-
----
-
 ## 🧠 Need Help?
 
 If you encounter any issues, check the homepage first. If you still need assistance, contact the project author or a developer.

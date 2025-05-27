@@ -61,19 +61,10 @@ class Message extends Model
         'attachment' => File::class,
     ];
 
-    // REVIEW - Nerozumiem prečo má Message zároveň hasOne aj hasMany na ten istý model, malo by to byť buď jedno alebo druhé
-
     /**
      * @var array hasOne relationships
      */
     public $hasOne = [
         'reaction' => Reaction::class
-    ];
-
-    /**
-     * @var array hasMany relationships
-     */
-    public $hasMany = [
-        'reactions' => Reaction::class
     ];
 }

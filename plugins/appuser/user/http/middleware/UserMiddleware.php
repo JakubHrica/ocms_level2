@@ -3,6 +3,7 @@
 use Closure;
 use AppUser\User\Models\User;
 use Illuminate\Http\Request;
+use Exception;
 
 class UserMiddleware
 {
@@ -13,14 +14,8 @@ class UserMiddleware
 
         // Check if a token is provided in the request
         if (!$token) {
-            // Return a JSON response with an error if no token is provided
-
-            // REVIEW - Namiesto response s kódom 500 prosím použi throw new Exception, celkovo pozerám že v controlleri zvláštne riešiš errory, používaj throw new Exception a try-catch block v tomto projekte nepotrebuješ
-
-            return response()->json([
-                'staus' => 'error',
-                'message' => 'No token provided',
-            ], 500);
+            // If no token is provided, throw an exception with a 400 status code
+            throw new Exception('No token provided', 400);
         }
 
         // Find the user associated with the provided token
@@ -28,11 +23,8 @@ class UserMiddleware
 
         // Check if the token is invalid (no user found)
         if (!$user) {
-            // Return a JSON response with an error if the token is invalid
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Invalid token',
-            ], 500);
+            // If the token is invalid, throw an exception with a 400 status code
+            throw new Exception('Invalid token', 400);
         }
 
         // Merge the user data into the request for further processing

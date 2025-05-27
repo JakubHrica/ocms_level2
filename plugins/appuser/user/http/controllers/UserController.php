@@ -11,97 +11,60 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        try {
-            // Retrieve all posted data from the request
-            $data = $request->post();
+        // Create a new user
+        $user = new User();
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
 
-            // Hash the user's password for secure storage
-            // REVIEW - Tip - Toto sa dá urobiť aj automaticky pomocou hashable attribútu v modeli, môžeš si to naštudovať
-            $data['password'] = Hash::make($data['password']);
+        // Generate a random token for the user
+        $user->token = Str::random(30);
 
-            // Create a new User instance with the provided data
-            $user = new User($data);
+        // Save the user to the database
+        $user->save();
 
-            // Generate a random token for the user
-            $user->token = Str::random(30);
-
-            // Save the user to the database
-            $user->save();
-
-            // Return a success response with the generated token
-            return response()->json([
-            'status' => 'success',
-            'message' => 'User registered successfully',
-            'token' => $user->token
-            ]);
-        } catch (Exception $e) {
-            return $this->handleException($e, 'Failed to register user');
-        }
+        // Return a success response with the generated token
+        return[
+        'token' => $user->token
+        ];
     }
 
     public function login(Request $request)
     {
-        try {
-            // Retrieve all posted data from the request
-            $data = $request->post();
-            
-            // Find the user by their email address
-            $user = User::where('email', $data['email'])->first();
+        // Retrieve all posted data from the request
+        $data = $request->post();
+        
+        // Find the user by their email address
+        $user = User::where('email', $data['email'])->first();
 
-            // Check if the user exists and the provided password matches the stored hashed password
-            if (!$user || !Hash::check($data['password'], $user->password)) {
-                // Return an error response if credentials are invalid
-                return response()->json([
-                    'status' => 'error',
-                    'error' => 'Invalid credentials'
-                ], 401);
-            }
-
-            // Generate a new random token for the user
-            $user->token = Str::random(30);
-
-            // Save the updated user record with the new token
-            $user->save();
-
-            // Return a success response with the generated token
-            return response()->json([
-                'status' => 'success',
-                'message' => 'User logged in successfully',
-                'token' => $user->token
-            ]);
-        } catch (Exception $e) {
-            return $this->handleException($e, 'Failed to login');
+        // Check if the user exists and the provided password matches the stored hashed password
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+            throw new Exception('Invalid email or password', 401);
         }
+
+        // Generate a new random token for the user
+        $user->token = Str::random(30);
+
+        // Save the updated user record with the new token
+        $user->save();
+
+        // Return a success response with the generated token
+        return[
+            'token' => $user->token
+        ];
     }
 
     public function logout(Request $request)
     {
-        try {
-            // Retrieve the authenticated user from the request
-            $user = $request->user;
+        // Retrieve the authenticated user from the request
+        $user = $request->user;
 
-            // Invalidate the user's token by setting it to null
-            $user->token = null;
+        // Invalidate the user's token by setting it to null
+        $user->token = null;
 
-            // Save the updated user record to the database
-            $user->save();
+        // Save the updated user record to the database
+        $user->save();
 
-            // Return a success response indicating the user has been logged out
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Logged out'
-            ]);
-        } catch (Exception $e) {
-            return $this->handleException($e, 'Failed to logout');
-        }
-    }
-
-    private function handleException(Exception $e, $defaultMessage)
-    {
-        return response()->json([
-            'status' => 'error',
-            'error' => $defaultMessage,
-            'message' => $e->getMessage()
-        ], 500);
+        // Return a success response indicating the user has been logged out
+        return null;
     }
 }

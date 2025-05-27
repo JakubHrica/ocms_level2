@@ -3,6 +3,8 @@
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
+use AppChat\Message\Models\Message;
+use AppUser\User\Models\User;
 
 /**
  * CreateReactionsTable Migration
@@ -19,35 +21,11 @@ return new class extends Migration
         Schema::create('appchat_reaction_reactions', function(Blueprint $table) {
             $table->id();
 
-            /* REVIEW - Veľmi ti odporúčam používať ->foreignIdFor(), vyhľadaj si túto alternatívu, odporúčam ti ju pretože to robí to isté len namiesto 5 riadkov máš 1
-
-            $table->unsignedBigInteger('message_id')->unique();
-            $table->foreign('message_id')
-                  ->references('id')
-                  ->on('appchat_message_messages')
-                  ->onDelete('cascade');
-
-            alebo
-
-            $table->foreignIdFor(\AppChat\Message\Models\Message::class, 'message_id');
-
-            */
-
-            $table->unsignedBigInteger('message_id')->unique();
-            $table->unsignedBigInteger('user_id');
+            $table->foreignIdFor(Message::class, 'message_id');
+            $table->foreignIdFor(User::class, 'user_id');
             $table->string('emoji');
 
             $table->timestamps();
-
-            $table->foreign('message_id')
-                  ->references('id')
-                  ->on('appchat_message_messages')
-                  ->onDelete('cascade');
-            
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('appuser_user_users')
-                  ->onDelete('cascade');
         });
     }
 

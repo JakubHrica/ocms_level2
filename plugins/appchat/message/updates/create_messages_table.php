@@ -3,6 +3,9 @@
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
+use AppUser\User\Models\User;
+use AppChat\Conversation\Models\Conversation;
+use AppChat\Message\Models\Message;
 
 /**
  * CreateMessagesTable Migration
@@ -19,27 +22,12 @@ return new class extends Migration
         Schema::create('appchat_message_messages', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('conversation_id');
+            $table->foreignIdFor(User::class, 'user_id');
+            $table->foreignIdFor(Conversation::class, 'conversation_id');
             $table->text('content')->nullable();
-            $table->unsignedBigInteger('reply_to_id')->nullable();
+            $table->foreignIdFor(Message::class, 'reply_to_id')->nullable();
 
             $table->timestamps();
-
-            $table->foreign('conversation_id')
-                  ->references('id')
-                  ->on('appchat_conversation_conversations')
-                  ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('appuser_user_users')
-                  ->onDelete('cascade');
-
-            $table->foreign('reply_to_id')
-                  ->references('id')
-                  ->on('appchat_message_messages')
-                  ->onDelete('set null');
         });
     }
 

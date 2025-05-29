@@ -45,7 +45,7 @@ class Message extends Model
      * @var array belongsTo relationships
      */
     public $belongsTo = [
-        // REVIEW - Tu sa ti nejako opakujú veci
+        // REVIEW - Tu sa ti nejako opakujú veci !!
         'conversation' => Conversation::class,
         'user' => User::class,
         'reply_to' => [Message::class, 'key' => 'reply_to_id'],

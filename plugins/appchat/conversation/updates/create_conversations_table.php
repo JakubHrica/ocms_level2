@@ -21,6 +21,7 @@ return new class extends Migration
 
             $table->bigIncrements('id');
 
+            // REVIEW - Tu sa nedalo použiť to foreignIdFor? či?
             $table->unsignedBigInteger('user_one_id');
             $table->unsignedBigInteger('user_two_id');
             $table->string('name')->default('Conversation');

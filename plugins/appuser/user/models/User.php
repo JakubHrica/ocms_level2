@@ -23,7 +23,7 @@ class User extends Model
      */
     public $rules = [
         'email' => 'required|email',
-        'password' => 'min:6'
+        'password' => 'min:6' // REVIEW - tu si odstránil required, myslím že to tu malo ostať, keď tak mi napíš prečo si sa rozhodol to odstrániť
     ];
 
     protected $hashable = ['password'];

@@ -24,17 +24,17 @@ class UserController extends Controller
 
         // Return a success response with the generated token
         return[
-        'token' => $user->token
+            'token' => $user->token
         ];
     }
 
     public function login(Request $request)
     {
         // Retrieve all posted data from the request
-        $data = $request->post();
+        $data = $request->post(); // REVIEW - Tip - stačí post() namiesto $request->post()
 
         // Find the user by their email address
-        $user = User::where('email', $data['email'])->first();
+        $user = User::where('email', $data['email'])->first(); // REVIEW - Tip - taktiež ->firstOrFail() je trochu kratšie
 
         // Check if the user exists
         if (!$user) {

@@ -19,7 +19,7 @@ class UserMiddleware
         }
 
         // Find the user associated with the provided token
-        $user = User::where('token', $token)->first();
+        $user = User::where('token', $token)->first(); // REVIEW - Tip - tu by si mohol použiť ->firstOrFail() a trochu by si to tým skrátil
 
         // Check if the token is invalid (no user found)
         if (!$user) {

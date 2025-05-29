@@ -40,7 +40,7 @@ class ConversationController extends Controller
             throw new Exception('User not found or is already in conversation with you', 404);
         }
 
-        return[
+        return [
             'data' => $user
         ];
     }
@@ -76,7 +76,7 @@ class ConversationController extends Controller
         $otherUser = User::find($otherUserId); // Retrieve the data of the other user
 
         // Return the data of the new conversation
-        return[
+        return [
             'conversation_id' => $conversation->id,
             'user' => [
                 'id' => $otherUser->id,
@@ -110,11 +110,11 @@ class ConversationController extends Controller
         $conversation->name = $newName; // Update the conversation name
         $conversation->save(); // Save the changes
 
-        return[
-                'conversation' => [
-                    'id' => $conversation->id,
-                    'name' => $conversation->name
-                ]
+        return [
+            'conversation' => [
+                'id' => $conversation->id,
+                'name' => $conversation->name
+            ]
         ];
     }
 }

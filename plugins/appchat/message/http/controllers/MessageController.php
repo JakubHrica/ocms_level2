@@ -36,10 +36,10 @@ class MessageController extends Controller
     {
         // Fetch messages for the given conversation ID
         $messages = Message::with([
-        'user:id,email', // Include user details
-        'reaction', // Include reactions associated with the message
-        'reply_to', // Include the message being replied to, if any
-        'attachment' // Include any attachments associated with the message
+            'user:id,email', // Include user details
+            'reaction', // Include reactions associated with the message
+            'reply_to', // Include the message being replied to, if any
+            'attachment' // Include any attachments associated with the message
         ])
         ->where('conversation_id', $conversation_id) // Filter messages by conversation ID
         ->orderBy('created_at', 'asc') // Order messages by creation time in ascending order

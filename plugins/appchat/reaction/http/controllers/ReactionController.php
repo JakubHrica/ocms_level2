@@ -14,7 +14,7 @@ class ReactionController extends Controller
         $authUser = $request->user;
 
         // Get the emoji from the POST data
-        $emoji = $request->post('emoji');
+        $emoji = $request->post('emoji'); // REVIEW - Tip - post('emoji') je kratšie
 
         // Fetch the available emojis from settings
         $settings = EmojiSettings::instance();
@@ -28,8 +28,8 @@ class ReactionController extends Controller
         
         // Add or update the reaction for the message and user
         $reaction = Reaction::updateOrCreate(
-        ['message_id' => $message_id, 'user_id' => $authUser->id],
-        ['emoji' => $emoji]
+            ['message_id' => $message_id, 'user_id' => $authUser->id],
+            ['emoji' => $emoji]
         );
 
         // Return a success response with the reaction data

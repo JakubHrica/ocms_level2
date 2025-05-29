@@ -1,6 +1,7 @@
 <?php namespace AppUser\User\Models;
 
 use Model;
+use October\Rain\Database\Traits\Hashable;
 
 /**
  * User Model
@@ -10,6 +11,7 @@ use Model;
 class User extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use Hashable;
 
     /**
      * @var string table name
@@ -21,7 +23,7 @@ class User extends Model
      */
     public $rules = [
         'email' => 'required|email',
-        'password' => 'required|min:6'
+        'password' => 'min:6'
     ];
 
     protected $hashable = ['password'];

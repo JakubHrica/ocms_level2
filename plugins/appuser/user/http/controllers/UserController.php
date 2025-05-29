@@ -32,13 +32,18 @@ class UserController extends Controller
     {
         // Retrieve all posted data from the request
         $data = $request->post();
-        
+
         // Find the user by their email address
         $user = User::where('email', $data['email'])->first();
 
-        // Check if the user exists and the provided password matches the stored hashed password
-        if (!$user || !Hash::check($data['password'], $user->password)) {
-            throw new Exception('Invalid email or password', 401);
+        // Check if the user exists
+        if (!$user) {
+            throw new Exception('User not found', 404);
+        }
+
+        // Check the provided password matches the stored hashed password
+        if (!Hash::check($data['password'], $user->password)) {
+            throw new Exception('Wrong password', 401);
         }
 
         // Generate a new random token for the user

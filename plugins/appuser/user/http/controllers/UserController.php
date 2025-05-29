@@ -31,10 +31,10 @@ class UserController extends Controller
     public function login(Request $request)
     {
         // Retrieve all posted data from the request
-        $data = $request->post(); // REVIEW - Tip - stačí post() namiesto $request->post()
+        $data = post();
 
         // Find the user by their email address
-        $user = User::where('email', $data['email'])->first(); // REVIEW - Tip - taktiež ->firstOrFail() je trochu kratšie
+        $user = User::where('email', $data['email'])->firstOrFail();
 
         // Check if the user exists
         if (!$user) {

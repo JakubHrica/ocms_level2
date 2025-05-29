@@ -14,7 +14,7 @@ class ReactionController extends Controller
         $authUser = $request->user;
 
         // Get the emoji from the POST data
-        $emoji = $request->post('emoji'); // REVIEW - Tip - post('emoji') je kratšie
+        $emoji = post('emoji');
 
         // Fetch the available emojis from settings
         $settings = EmojiSettings::instance();

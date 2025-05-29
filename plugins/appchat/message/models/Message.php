@@ -49,9 +49,6 @@ class Message extends Model
         'conversation' => Conversation::class,
         'user' => User::class,
         'reply_to' => [Message::class, 'key' => 'reply_to_id'],
-        'user' => User::class,
-        'reply_to' => [Message::class, 'key' => 'reply_to_id'],
-        'conversation' => Conversation::class,
     ];
 
     /**
